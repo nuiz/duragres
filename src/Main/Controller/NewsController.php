@@ -28,7 +28,8 @@ class NewsController extends BaseController {
 			$this->slim->redirect($this->slim->request()->getRootUri().'/news');
 		}
 		else {
-			$this->slim->render("news/add.php", ['form'=> $form]);
+			header("location:javascript://history.go(-1)");
+			// $this->slim->render("news/add.php", ['form'=> $form]);
 		}
 	}
 

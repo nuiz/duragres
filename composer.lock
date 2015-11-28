@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "55e22bb4f09f6b7d9537d6bdab98eab9",
-    "content-hash": "bcb53ee85aea6c7b37a393019962b639",
+    "hash": "fa736f201de77ea985e8d0a1373580f3",
+    "content-hash": "971d617843b7b2fac430658475841aad",
     "packages": [
         {
             "name": "gabordemooij/redbean",
@@ -203,6 +203,47 @@
             "time": "2015-06-18 00:55:59"
         },
         {
+            "name": "verot/class.upload.php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/verot/class.upload.php.git",
+                "reference": "407d1ff5410de6b09759768d4decf33df78b89a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/verot/class.upload.php/zipball/407d1ff5410de6b09759768d4decf33df78b89a0",
+                "reference": "407d1ff5410de6b09759768d4decf33df78b89a0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/class.upload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Verot",
+                    "email": "colin@verot.net"
+                }
+            ],
+            "description": "This PHP class uploads files and manipulates images very easily.",
+            "homepage": "http://www.verot.net/php_class_upload.htm",
+            "keywords": [
+                "gd",
+                "upload"
+            ],
+            "time": "2015-08-09 12:07:30"
+        },
+        {
             "name": "wixel/gump",
             "version": "dev-master",
             "source": {
@@ -265,7 +306,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "wixel/gump": 20
+        "wixel/gump": 20,
+        "verot/class.upload.php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
