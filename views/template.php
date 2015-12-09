@@ -12,7 +12,7 @@
 	<script src="{siteUrl url='/asset/jquery/jquery-1.11.3.min.js'}"></script>
 	<script src="{siteUrl url='/asset/bootstrap/js/bootstrap.min.js'}"></script>
 	<script src="{siteUrl url='/asset/datepicker/js/bootstrap-datepicker.js'}"></script>
-	<script src="{siteUrl url=''}"></script>
+	<!-- <script src="{siteUrl url=''}"></script> -->
 </head>
 <body>
 <nav class="navbar navbar-default">

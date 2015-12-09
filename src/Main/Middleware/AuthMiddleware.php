@@ -17,6 +17,9 @@ class AuthMiddleware extends Middleware {
 		if(in_array($currentRoute->getName(), ['login', 'post_login'])) {
 			return;
 		}
+		if(preg_match('/^(\/api)/', $currentRoute->getPattern())) {
+			return;
+		}
 
 		$user = $this->getAuth()->getUserSession();
 		if(!$user) {

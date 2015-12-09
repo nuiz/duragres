@@ -3,16 +3,21 @@ namespace Main\Form;
 
 use RedBeanPHP\R;
 
-class NewsForm extends Form
+class ProductForm extends Form
 {
 	public $attr = [
 		// 'created_at'=> '',
 		// 'updated_at'=> '',
+		'code'=> '',
 		'name'=> '',
 		'picture'=> '',
 		'thumb'=> '',
-		'content'=> '',
-		'link'=> ''
+		'size'=> '',
+		'style'=> '',
+		'type'=> '',
+		'company'=> '',
+		'price'=> '',
+		'is_hot'=> 0
 	];
 
 	public function validate()
@@ -21,6 +26,9 @@ class NewsForm extends Form
 		$this->error = false;
 		$this->isValid = true;
 
+		if(empty($this->attr['code'])) {
+			$this->pushError("code empty");
+		}
 		if(empty($this->attr['name'])) {
 			$this->pushError("name empty");
 		}
@@ -39,37 +47,44 @@ class NewsForm extends Form
 	public function save()
 	{
 		if(!$this->emptyAttr('id')) {
-			$news = R::findOne('news', 'id=?', [$this->getAttr('id')]);
-			$news->updated_at = date('Y-m-d H:i:s');
+			$product = R::findOne('product', 'id=?', [$this->getAttr('id')]);
+			$product->updated_at = date('Y-m-d H:i:s');
 		}
 		else {
-			$news = R::dispense('news');
-			$news->created_at = date('Y-m-d H:i:s');
-			$news->updated_at = date('Y-m-d H:i:s');
+			$product = R::dispense('product');
+			$product->created_at = date('Y-m-d H:i:s');
+			$product->updated_at = $product->created_at;
 		}
-		$news->name = $this->getAttr('name');
+		$product->code = $this->getAttr('code');
+		$product->name = $this->getAttr('name');
+		$product->size = $this->getAttr('size');
+		$product->style = $this->getAttr('style');
+		$product->type = $this->getAttr('type');
+		$product->company = $this->getAttr('company');
+		$product->price = $this->getAttr('price');
+		$product->is_hot = $this->getAttr('is_hot');
 
 		$oldPicture = null;
-		$thumb = null;
+		$picture = null;
 		if(!$this->emptyAttr('picture') && $this->attr['picture']->uploaded) {
 			$picture = $this->getAttr('picture');
-			$picture->file_new_name_body = $this->generateName("news_picture_");
+			$picture->file_new_name_body = $this->generateName("product_picture_");
 			$picture->image_resize = true;
 		    $picture->image_convert = 'jpeg';
 		    $picture->image_x = 800;
-		    // $picture->image_y = 600;
-		    $picture->image_ratio_y = true;
+		    $picture->image_y = 600;
+		    // $picture->image_ratio_y = true;
 			$picture->process('upload/');
 
-			$oldPicture = $news->picture;
-			$news->picture = $picture->file_dst_name;
+			$oldPicture = $product->picture;
+			$product->picture = $picture->file_dst_name;
 		}
 
 		$oldThumb = null;
 		$thumb = null;
 		if(!$this->emptyAttr('thumb') && $this->attr['thumb']->uploaded) {
 			$thumb = $this->getAttr('thumb');
-			$thumb->file_new_name_body = $this->generateName("news_thumb_");
+			$thumb->file_new_name_body = $this->generateName("product_thumb_");
 			$thumb->image_resize = true;
 		    $thumb->image_convert = 'jpeg';
 		    $thumb->image_x = 800;
@@ -77,12 +92,11 @@ class NewsForm extends Form
 		    //$thumb->image_ratio_y = true;
 			$thumb->process('upload/');
 
-			$oldThumb = $news->thumb;
-			$news->thumb = $thumb->file_dst_name;
+			$oldThumb = $product->thumb;
+			$product->thumb = $thumb->file_dst_name;
 		}
-		$news->content = $this->getAttr('content', '');
-		$news->link = $this->getAttr('link', '');
-		$success = R::store($news);
+
+		$success = R::store($product);
 
 		if($success) {
 			if(!is_null($oldPicture)) {
@@ -92,8 +106,6 @@ class NewsForm extends Form
 				@unlink('upload/'.$oldThumb);
 			}
 		}
-
-		return $success;
 	}
 
 	public function generateName($prefix = "")

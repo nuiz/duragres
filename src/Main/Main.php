@@ -21,7 +21,7 @@ class Main {
 			'templates.path'=> 'views'
 			]);
 		$this->slim->setName('um');
-		R::setup('mysql:host=localhost;dbname=um', 'root', '');
+		R::setup('mysql:host=localhost;dbname=lighting_durag', 'root', '');
 
 		// add middleware
 		$this->addMiddleware(new AuthMiddleware());

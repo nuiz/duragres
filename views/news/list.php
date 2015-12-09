@@ -11,8 +11,8 @@
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>ชื่อ-สกุล</th>
-				<th>พนักงาน</th>
+				<th>Thumb</th>
+				<th>Name</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -20,11 +20,11 @@
 			{foreach key=key item=item from=$items}
 			<tr>
 				<td>{$item->id}</td>
-				<td><a href="">{$item->first_name} {$item->last_name}</a></td>
-				<td>{$item->user->username}</td>
+				<td><img src="upload/{$item->thumb}" width="80" height="60"></td>
+				<td>{$item->name}</td>
 				<td>
-					<a href="{siteUrl url="/employee/edit/{$item->id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-					<a class="confirm-beforeclick" href="{siteUrl url="/employee/delete/{$item->id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					<a href="{siteUrl url="/news/edit/{$item->id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					<a class="confirm-beforeclick" href="{siteUrl url="/news/delete/{$item->id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 				</td>
 			</tr>
 			{/foreach}
@@ -33,21 +33,24 @@
 	<ul class="pagination">
     {if $page gt 1}
     <li>
-      <a href="{siteUrl url="/employee?page={$page-1}"}" aria-label="Previous">
+      <a href="{siteUrl url="/news?page={$page-1}"}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
     {/if}
     {for $i=1 to $maxPage}
-    <li><a href="{siteUrl url="/employee?page=$i"}">{$i}</a></li>
+    <li><a href="{siteUrl url="/news?page=$i"}">{$i}</a></li>
     {/for}
     {if $maxPage gt $page}
     <li>
-      <a href="{siteUrl url="/employee?page={$page+1}"}" aria-label="Next">
+      <a href="{siteUrl url="/news?page={$page+1}"}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
     {/if}
   </ul>
 </div>
+<script>
+
+</script>
 {/block}
