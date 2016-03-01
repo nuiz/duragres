@@ -31,46 +31,49 @@
 		</div> -->
 		<div class="form-group">
 			<label>Type</label>
-			<select class="form-control chain-master" name="type" data-chain-name="type-size" required="">
+			<select class="form-control" name="type" id="type" required="">
 				<option value="">-All-</option>
 				<option {if $form->attr.type=='Floor Tiles'}selected{/if}>Floor Tiles</option>
 				<option {if $form->attr.type=='Wall Tiles'}selected{/if}>Wall Tiles</option>
 				<option {if $form->attr.type=='Mosaic'}selected{/if}>Mosaic</option>
 				<option {if $form->attr.type=='Porcelain'}selected{/if}>Porcelain</option>
 			</select>
+			<select class="form-control" name="porcelain_type" id="porcelain_type" required="" style="display: none;" disabled="">
+				<option value="">-All-</option>
+				<option {if $form->attr.type=='Floor'}selected{/if}>Floor</option>
+				<option {if $form->attr.type=='Wall'}selected{/if}>Wall</option>
+			</select>
 		</div>
 		<div class="form-group">
 			<label>Size</label>
-			<select class="form-control chian-child" name="size" data-chain-name="type-size" required="">
+			<select class="form-control" id="size" name="size" required="">
 				<option value="">-Please Select-</option>
 
-				<option data-chain-value="Floor Tiles" value="8x8">8x8</option>
-				<option data-chain-value="Floor Tiles" value="12x12">12x12</option>
-				<option data-chain-value="Floor Tiles" value="12x24">12x24</option>
-				<option data-chain-value="Floor Tiles" value="13x13">13x13</option>
-				<option data-chain-value="Floor Tiles" value="16x16">16x16</option>
-				<option data-chain-value="Floor Tiles" value="20x20">20x20</option>
+				<option data-type-value="Floor Tiles" data-size-unit="cm" value="50x50">50x50 cm</option>
+				<option data-type-value="Floor Tiles" data-size-unit="cm" value="30x60">30x60 cm</option>
+				<option data-type-value="Floor Tiles" data-size-unit="inch" value="16x16">16x16 inch</option>
+				<option data-type-value="Floor Tiles" data-size-unit="inch" value="13x13">13x13 inch</option>
+				<option data-type-value="Floor Tiles" data-size-unit="inch" value="12x12">12x12 inch</option>
+				<option data-type-value="Floor Tiles" data-size-unit="inch" value="8x8">8x8 inch</option>
 
-				<option data-chain-value="Wall Tiles" value="8x10">8x10</option>
-				<option data-chain-value="Wall Tiles" value="8x12">8x12</option>
-				<option data-chain-value="Wall Tiles" value="8x16">8x16</option>
-				<option data-chain-value="Wall Tiles" value="10x16">10x16</option>
-				<option data-chain-value="Wall Tiles" value="12x24">12x24</option>
+				<option data-type-value="Wall Tiles" data-size-unit="cm" value="30x60">30x60 cm</option>
+				<option data-type-value="Wall Tiles" data-size-unit="inch" value="10x16">10x16 inch</option>
+				<option data-type-value="Wall Tiles" data-size-unit="inch" value="8x16">8x16 inch</option>
+				<option data-type-value="Wall Tiles" data-size-unit="inch" value="8x12">8x12 inch</option>
+				<option data-type-value="Wall Tiles" data-size-unit="inch" value="8x10">8x10 inch</option>
 
-				<option data-chain-value="Mosaic" value="8x8">8x8</option>
-				<option data-chain-value="Mosaic" value="12x12">12x12</option>
-				<option data-chain-value="Mosaic" value="12x24">12x24</option>
-				<option data-chain-value="Mosaic" value="13x13">13x13</option>
-				<option data-chain-value="Mosaic" value="16x16">16x16</option>
-				<option data-chain-value="Mosaic" value="20x20">20x20</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size-unit="cm" value="60x60">60x60 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size-unit="cm" value="30x60">30x60 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size-unit="cm" value="30x30">30x30 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size-unit="cm" value="15x60">15x60 cm</option>
 
-				<option data-chain-value="Porcelain" value="8x8">8x8</option>
-				<option data-chain-value="Porcelain" value="12x12">12x12</option>
-				<option data-chain-value="Porcelain" value="12x24">12x24</option>
-				<option data-chain-value="Porcelain" value="13x13">13x13</option>
-				<option data-chain-value="Porcelain" value="16x16">16x16</option>
-				<option data-chain-value="Porcelain" value="20x20">20x20</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size-unit="cm" value="60x60">60x60 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size-unit="cm" value="30x30">30x30 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size-unit="cm" value="15x60">15x60 cm</option>
+
+				<option data-type-value="Mosaic" data-size-unit="cm" value="30x30">30x30 cm</option>
 			</select>
+			<input type="hidden" id="size_unit" name="size_unit" readonly="" value="{$form->attr.size_unit}">
 		</div>
 		<div class="form-group hidden">
 			<label>Style</label>
@@ -84,10 +87,10 @@
 		</div>
 		<div class="form-group">
 			<label>Company</label>
-			<select name="company" class="form-control">
+			<select name="company" id="company" class="form-control">
 				<option value="">-Please Select-</option>
-				<option {if $form->attr.company=='Duragres'}selected{/if}>Duragres</option>
-				<option {if $form->attr.company=='Cergres'}selected{/if}>Cergres</option>
+				<option value="Duragres" {if $form->attr.company=='Duragres'}selected{/if}>Duragres</option>
+				<option value="Cergres" {if $form->attr.company=='Cergres'}selected{/if}>Cergres</option>
 			</select>
 		</div>
 		<div class="form-group">
@@ -141,20 +144,36 @@ $(function(){
 
 $(function(){
 	var formType = "{$form->attr.type}";
+	var formPorcelainType = "{$form->attr.porcelain_type}";
 	var formSize = "{$form->attr.size}";
 
-	$('.chain-master').change(function(e){
-		var name = $(this).data('chain-name');
-		var $childSelect = $('.chian-child[data-chain-name="'+name+'"]');
-		var value = $(this).val();
+	var $elType = $('#type');
+	var $elPorcelainType = $('#porcelain_type');
+	var $elSize = $('#size');
+	var $elSizeUnit = $('#size_unit');
 
-		$childSelect.val("");
-		$('option', $childSelect).hide()
-			.filter('[data-chain-value="'+value+'"]').show();
+	$('#porcelain_type, #type').change(function(e){
+		var type = $elType.val();
+		var porcelainType = $elPorcelainType.val();
+		var sizeUnit = $elSizeUnit.data("size_unit-value");
+
+		// size_unit chain
+		$elSizeUnit.val(sizeUnit);
+
+		// size chain
+		var optionQuery = ["option"];
+		optionQuery.push("[data-type-value='"+type+"']");
+		if(type == "Porcelain") optionQuery.push("[data-porcelain_type-value='"+porcelainType+"']");
+
+		// company chain
+		var $companyOptions = $("#company option");
+		$companyOptions.show();
+		if(type == "Mosaic")
+			$companyOptions.filter("[value='Cergres']").hide();
+
+		$("option", $elSize).hide();
+		$(optionQuery.join(""), $elSize).show();
 	});
-
-	 $('.chain-master').change();
-	 $('option[data-chain-value="'+formType+'"][value="'+formSize+'"]').prop("selected", true);
 });
 </script>
 {/block}
