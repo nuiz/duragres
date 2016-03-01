@@ -32,7 +32,7 @@
 		<div class="form-group">
 			<label>Type</label>
 			<select class="form-control" name="type" id="type" required="">
-				<option value="">-All-</option>
+				<option value="" class="hidden">-Please Select-</option>
 				<option {if $form->attr.type=='Floor Tiles'}selected{/if}>Floor Tiles</option>
 				<option {if $form->attr.type=='Wall Tiles'}selected{/if}>Wall Tiles</option>
 				<option {if $form->attr.type=='Mosaic'}selected{/if}>Mosaic</option>
@@ -40,8 +40,8 @@
 			</select>
 			<select class="form-control" name="porcelain_type" id="porcelain_type" required="" style="display: none;" disabled="">
 				<option value="">-All-</option>
-				<option {if $form->attr.type=='Floor'}selected{/if}>Floor</option>
-				<option {if $form->attr.type=='Wall'}selected{/if}>Wall</option>
+				<option {if $form->attr.porcelain_type=='Floor'}selected{/if}>Floor</option>
+				<option {if $form->attr.porcelain_type=='Wall'}selected{/if}>Wall</option>
 			</select>
 		</div>
 		<div class="form-group">
@@ -49,29 +49,29 @@
 			<select class="form-control" id="size" name="size" required="">
 				<option value="">-Please Select-</option>
 
-				<option data-type-value="Floor Tiles" data-size-unit="cm" value="50x50">50x50 cm</option>
-				<option data-type-value="Floor Tiles" data-size-unit="cm" value="30x60">30x60 cm</option>
-				<option data-type-value="Floor Tiles" data-size-unit="inch" value="16x16">16x16 inch</option>
-				<option data-type-value="Floor Tiles" data-size-unit="inch" value="13x13">13x13 inch</option>
-				<option data-type-value="Floor Tiles" data-size-unit="inch" value="12x12">12x12 inch</option>
-				<option data-type-value="Floor Tiles" data-size-unit="inch" value="8x8">8x8 inch</option>
+				<option data-type-value="Floor Tiles" data-size_unit-value="cm" value="50x50" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='50x50' && $form->attr.size_unit=='cm'}selected{/if}>50x50 cm</option>
+				<option data-type-value="Floor Tiles" data-size_unit-value="cm" value="30x60" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='30x60' && $form->attr.size_unit=='cm'}selected{/if}>30x60 cm</option>
+				<option data-type-value="Floor Tiles" data-size_unit-value="inch" value="16x16" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='16x16' && $form->attr.size_unit=='inch'}selected{/if}>16x16 inch</option>
+				<option data-type-value="Floor Tiles" data-size_unit-value="inch" value="13x13" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='13x13' && $form->attr.size_unit=='inch'}selected{/if}>13x13 inch</option>
+				<option data-type-value="Floor Tiles" data-size_unit-value="inch" value="12x12" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='12x12' && $form->attr.size_unit=='inch'}selected{/if}>12x12 inch</option>
+				<option data-type-value="Floor Tiles" data-size_unit-value="inch" value="8x8" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='8x8' && $form->attr.size_unit=='inch'}selected{/if}>8x8 inch</option>
 
-				<option data-type-value="Wall Tiles" data-size-unit="cm" value="30x60">30x60 cm</option>
-				<option data-type-value="Wall Tiles" data-size-unit="inch" value="10x16">10x16 inch</option>
-				<option data-type-value="Wall Tiles" data-size-unit="inch" value="8x16">8x16 inch</option>
-				<option data-type-value="Wall Tiles" data-size-unit="inch" value="8x12">8x12 inch</option>
-				<option data-type-value="Wall Tiles" data-size-unit="inch" value="8x10">8x10 inch</option>
+				<option data-type-value="Wall Tiles" data-size_unit-value="cm" value="30x60" {if $form->attr.type=='Wall Tiles' && $form->attr.size=='30x60' && $form->attr.size_unit=='cm'}selected{/if}>30x60 cm</option>
+				<option data-type-value="Wall Tiles" data-size_unit-value="inch" value="10x16" {if $form->attr.type=='Wall Tiles' && $form->attr.size=='10x16' && $form->attr.size_unit=='inch'}selected{/if}>10x16 inch</option>
+				<option data-type-value="Wall Tiles" data-size_unit-value="inch" value="8x16" {if $form->attr.type=='Wall Tiles' && $form->attr.size=='8x16' && $form->attr.size_unit=='inch'}selected{/if}>8x16 inch</option>
+				<option data-type-value="Wall Tiles" data-size_unit-value="inch" value="8x12" {if $form->attr.type=='Wall Tiles' && $form->attr.size=='8x12' && $form->attr.size_unit=='inch'}selected{/if}>8x12 inch</option>
+				<option data-type-value="Wall Tiles" data-size_unit-value="inch" value="8x10" {if $form->attr.type=='Wall Tiles' && $form->attr.size=='8x10' && $form->attr.size_unit=='inch'}selected{/if}>8x10 inch</option>
 
-				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size-unit="cm" value="60x60">60x60 cm</option>
-				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size-unit="cm" value="30x60">30x60 cm</option>
-				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size-unit="cm" value="30x30">30x30 cm</option>
-				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size-unit="cm" value="15x60">15x60 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size_unit-value="cm" value="60x60" {if $form->attr.type=='Porcelain' && $form->attr.porcelain_type=='Floor' && $form->attr.size=='60x60' && $form->attr.size_unit=='cm'}selected{/if}>60x60 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size_unit-value="cm" value="30x60" {if $form->attr.type=='Porcelain' && $form->attr.porcelain_type=='Floor' && $form->attr.size=='30x60' && $form->attr.size_unit=='cm'}selected{/if}>30x60 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size_unit-value="cm" value="30x30" {if $form->attr.type=='Porcelain' && $form->attr.porcelain_type=='Floor' && $form->attr.size=='30x30' && $form->attr.size_unit=='cm'}selected{/if}>30x30 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Floor" data-size_unit-value="cm" value="15x60" {if $form->attr.type=='Porcelain' && $form->attr.porcelain_type=='Floor' && $form->attr.size=='15x60' && $form->attr.size_unit=='cm'}selected{/if}>15x60 cm</option>
 
-				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size-unit="cm" value="60x60">60x60 cm</option>
-				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size-unit="cm" value="30x30">30x30 cm</option>
-				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size-unit="cm" value="15x60">15x60 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size_unit-value="cm" value="60x60" {if $form->attr.type=='Porcelain' && $form->attr.porcelain_type=='Wall' && $form->attr.size=='60x60' && $form->attr.size_unit=='cm'}selected{/if}>60x60 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size_unit-value="cm" value="30x30" {if $form->attr.type=='Porcelain' && $form->attr.porcelain_type=='Wall' && $form->attr.size=='30x30' && $form->attr.size_unit=='cm'}selected{/if}>30x30 cm</option>
+				<option data-type-value="Porcelain" data-porcelain_type-value="Wall" data-size_unit-value="cm" value="15x60" {if $form->attr.type=='Porcelain' && $form->attr.porcelain_type=='Wall' && $form->attr.size=='15x60' && $form->attr.size_unit=='cm'}selected{/if}>15x60 cm</option>
 
-				<option data-type-value="Mosaic" data-size-unit="cm" value="30x30">30x30 cm</option>
+				<option data-type-value="Mosaic" data-size_unit-value="cm" value="30x30" {if $form->attr.type=='Mosaic' && $form->attr.size=='30x30' && $form->attr.size_unit=='cm'}selected{/if}>30x30 cm</option>
 			</select>
 			<input type="hidden" id="size_unit" name="size_unit" readonly="" value="{$form->attr.size_unit}">
 		</div>
@@ -88,7 +88,7 @@
 		<div class="form-group">
 			<label>Company</label>
 			<select name="company" id="company" class="form-control">
-				<option value="">-Please Select-</option>
+				<option value="" class="hidden">-Please Select-</option>
 				<option value="Duragres" {if $form->attr.company=='Duragres'}selected{/if}>Duragres</option>
 				<option value="Cergres" {if $form->attr.company=='Cergres'}selected{/if}>Cergres</option>
 			</select>
@@ -151,29 +151,47 @@ $(function(){
 	var $elPorcelainType = $('#porcelain_type');
 	var $elSize = $('#size');
 	var $elSizeUnit = $('#size_unit');
+	var $elCompany = $("#company");
 
-	$('#porcelain_type, #type').change(function(e){
+	function changeType() {
 		var type = $elType.val();
 		var porcelainType = $elPorcelainType.val();
-		var sizeUnit = $elSizeUnit.data("size_unit-value");
 
-		// size_unit chain
-		$elSizeUnit.val(sizeUnit);
+		if(type == "Porcelain")
+			$elPorcelainType.prop("disabled", false).show();
+		else
+			$elPorcelainType.prop("disabled", true).hide();
 
 		// size chain
 		var optionQuery = ["option"];
 		optionQuery.push("[data-type-value='"+type+"']");
-		if(type == "Porcelain") optionQuery.push("[data-porcelain_type-value='"+porcelainType+"']");
-
-		// company chain
-		var $companyOptions = $("#company option");
-		$companyOptions.show();
-		if(type == "Mosaic")
-			$companyOptions.filter("[value='Cergres']").hide();
-
+		if(type == "Porcelain")
+			optionQuery.push("[data-porcelain_type-value='"+porcelainType+"']");
 		$("option", $elSize).hide();
 		$(optionQuery.join(""), $elSize).show();
+
+		// company chain
+		var $cergresOption = $("option[value='Cergres']", $elCompany);
+		if(type == "Mosaic"){
+			$cergresOption.hide();
+			if($elCompany.val() == "Cergres")
+				$elCompany.val("");
+		}
+		else
+			$cergresOption.show();
+	}
+
+	$('#porcelain_type, #type').change(function(){
+		changeType();
+		$elSize.val(""); $elSizeUnit.val("");
+		if($elType.val() != "Porcelain") $elPorcelainType.val("");
 	});
+	$elSize.change(function(e){
+		var sizeUnit = $("option:selected", $elSize).data("size_unit-value");
+		// console.log($("option:selected", $elSize));
+		$elSizeUnit.val(sizeUnit);
+	});
+	changeType();
 });
 </script>
 {/block}

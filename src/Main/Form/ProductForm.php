@@ -67,9 +67,10 @@ class ProductForm extends Form
 		$product->name = $this->getAttr('name');
 		$product->name_eng = $this->getAttr('name_eng');
 		$product->size = $this->getAttr('size');
-		$product->size = $this->getAttr('size_unit');
+		$product->size_unit = $this->getAttr('size_unit');
 		$product->style = $this->getAttr('style');
 		$product->type = $this->getAttr('type');
+		$product->porcelain_type = $this->getAttr('porcelain_type');
 		$product->company = $this->getAttr('company');
 		$product->price = $this->getAttr('price');
 		$product->is_hot = $this->getAttr('is_hot');

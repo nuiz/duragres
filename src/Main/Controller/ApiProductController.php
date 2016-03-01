@@ -19,9 +19,17 @@ class ApiProductController extends BaseController {
 			$where[] = "type = ?";
 			$queryParam[] = $_GET['type'];
 		}
+		if(!empty($_GET['porcelain_type'])) {
+			$where[] = "porcelain_type = ?";
+			$queryParam[] = $_GET['porcelain_type'];
+		}
 		if(!empty($_GET['size'])) {
 			$where[] = "size = ?";
 			$queryParam[] = $_GET['size'];
+		}
+		if(!empty($_GET['size_unit'])) {
+			$where[] = "size_unit = ?";
+			$queryParam[] = $_GET['size_unit'];
 		}
 		if(!empty($_GET['style'])) {
 			$where[] = "style = ?";
