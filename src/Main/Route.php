@@ -90,5 +90,11 @@ class Route {
 		$this->slim->get('/api/account/product', 'Main\Controller\ApiAccountController:product');
 		$this->slim->post('/api/account/product/add', 'Main\Controller\ApiAccountController:addProduct');
 		$this->slim->get('/api/account/product/delete/:product_id', 'Main\Controller\ApiAccountController:deleteProduct');
+
+		$this->slim->get('/api/room', 'Main\Controller\ApiRoomController:index');
+		$this->slim->get('/api/room/:id', 'Main\Controller\ApiRoomController:get');
+
+		$this->slim->get('/api/pattern', 'Main\Controller\ApiPatternController:index');
+		$this->slim->get('/api/pattern/:id', 'Main\Controller\ApiPatternController:get');
 	}
 }

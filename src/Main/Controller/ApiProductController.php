@@ -43,12 +43,19 @@ class ApiProductController extends BaseController {
 			$where[] = "company = ?";
 			$queryParam[] = $_GET['company'];
 		}
+		if(!empty($_GET['pattern_id'])) {
+			$pattern = R::findOne("room_pattern", "id=?", [$_GET['pattern_id']]);
+			$ids = trim($pattern["product_use"], ",");
+			$ids = explode(",", $ids);
+			$where[] = "id IN (".R::genSlots($ids).")";
+			$queryParam = array_merge($queryParam, $ids);
+		}
 
 		$where = implode(" AND ", $where);
 		$queryParam[] = $start;
 		$queryParam[] = $perPage;
 
-		$items = R::getAll('SELECT * FROM product WHERE '.$where.' ORDER BY is_hot DESC, is_new DESC, created_at DESC LIMIT ?,?', $queryParam);
+		$items = R::getAll('SELECT product.* FROM product WHERE '.$where.' ORDER BY is_hot DESC, is_new DESC, created_at DESC LIMIT ?,?', $queryParam);
 		$count = R::count('product', $where, array_slice($queryParam, 0, -2));
 		$maxPage = floor($count/$perPage) + ($count%$perPage == 0 ? 0: 1);
 
