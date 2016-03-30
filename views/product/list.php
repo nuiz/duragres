@@ -25,32 +25,29 @@
 					<select class="form-control chian-child" name="size" data-chain-name="type-size">
 						<option value="">-Please Select-</option>
 
-						<option data-chain-value="Floor Tiles" value="8x8">8x8</option>
-						<option data-chain-value="Floor Tiles" value="12x12">12x12</option>
-						<option data-chain-value="Floor Tiles" value="12x24">12x24</option>
-						<option data-chain-value="Floor Tiles" value="13x13">13x13</option>
-						<option data-chain-value="Floor Tiles" value="16x16">16x16</option>
-						<option data-chain-value="Floor Tiles" value="20x20">20x20</option>
+						<option data-chain-value="Floor Tiles" value="8x8">8x8 inch</option>
+						<option data-chain-value="Floor Tiles" value="12x12">12x12 inch</option>
+						<option data-chain-value="Floor Tiles" value="13x13">13x13 inch</optionh>
+						<option data-chain-value="Floor Tiles" value="16x16">16x16 inch</option>
+						<option data-chain-value="Floor Tiles" value="30x60">30x60 cm</option>
+						<option data-chain-value="Floor Tiles" value="50x50">50x50 cm</option>
+						<option data-chain-value="Floor Tiles" value="60x60">60x60 cm</option>
 
-						<option data-chain-value="Wall Tiles" value="8x10">8x10</option>
-						<option data-chain-value="Wall Tiles" value="8x12">8x12</option>
-						<option data-chain-value="Wall Tiles" value="8x16">8x16</option>
-						<option data-chain-value="Wall Tiles" value="10x16">10x16</option>
-						<option data-chain-value="Wall Tiles" value="12x24">12x24</option>
 
-						<option data-chain-value="Mosaic" value="8x8">8x8</option>
-						<option data-chain-value="Mosaic" value="12x12">12x12</option>
-						<option data-chain-value="Mosaic" value="12x24">12x24</option>
-						<option data-chain-value="Mosaic" value="13x13">13x13</option>
-						<option data-chain-value="Mosaic" value="16x16">16x16</option>
-						<option data-chain-value="Mosaic" value="20x20">20x20</option>
+						<option data-chain-value="Wall Tiles" value="8x10">8x10 inch</option>
+						<option data-chain-value="Wall Tiles" value="8x12">8x12 inch</option>
+						<option data-chain-value="Wall Tiles" value="8x16">8x16 inch</option>
+						<option data-chain-value="Wall Tiles" value="10x16">10x16 inch</option>
+						<option data-chain-value="Wall Tiles" value="30x60">30x60 cm</option>
 
-						<option data-chain-value="Porcelain" value="8x8">8x8</option>
-						<option data-chain-value="Porcelain" value="12x12">12x12</option>
-						<option data-chain-value="Porcelain" value="12x24">12x24</option>
-						<option data-chain-value="Porcelain" value="13x13">13x13</option>
-						<option data-chain-value="Porcelain" value="16x16">16x16</option>
-						<option data-chain-value="Porcelain" value="20x20">20x20</option>
+						<option data-chain-value="Mosaic" value="30x30">30x30 inch</option>
+
+						<option data-chain-value="Porcelain" value="15x60">15x60 cm</option>
+						<option data-chain-value="Porcelain" value="20x60">20x60 cm</option>
+						<option data-chain-value="Porcelain" value="30x60">30x60 cm</option>
+						<option data-chain-value="Porcelain" value="40x60">40x60 cm</option>
+						<option data-chain-value="Porcelain" value="60x60">60x60 cm</option>
+
 					</select>
 				</div>
 				<div class="col-md-3 form-group hidden">
@@ -93,6 +90,7 @@
 				<th>Price</th>
 				<th>Hot</th>
 				<th>New</th>
+				<th>Group</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -105,15 +103,16 @@
 				<td>{$item.name_eng}</td>
 				<td><img src="upload/{$item.picture}" width="80" height="60"></td>
 				<!-- <td><img src="upload/{$item.thumb}" width="80" height="60"></td> -->
-				<td>{$item.size} (inch)</td>
+				<td>{$item.size} ({$item.size_unit})</td>
 				<td>{$item.type}</td>
 				<td>{$item.company}</td>
 				<td>{$item.price}</td>
 				<td>{if $item.is_hot}<span class="badge" style="background: rgb(240, 154, 25);">Hot</span>{/if}</td>
 				<td>{if $item.is_new}<span class="badge" style="background: rgb(240, 77, 25);">New</span>{/if}</td>
+				<td>{if $item.is_group}<span class="badge" style="background: rgb(240, 77, 25);">Group</span>{/if}</td>
 				<td>
-					<a href="{siteUrl url="/product/edit/{$item.id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-					<a class="confirm-beforeclick" href="{siteUrl url="/product/delete/{$item.id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					<a href="{siteUrl url="/product/edit/{$item.id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+					<a class="confirm-beforeclick" href="{siteUrl url="/product/delete/{$item.id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 				</td>
 			</tr>
 			{/foreach}

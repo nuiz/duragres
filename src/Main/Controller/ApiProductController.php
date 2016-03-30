@@ -7,7 +7,7 @@ use RedBeanPHP\R;
 class ApiProductController extends BaseController {
 	public function index()
 	{
-		$perPage = 10;
+		$perPage = 999999;
 
 		$page = @$_GET['page']? $_GET['page']: 1;
 		$start = ($page-1) * $perPage;
@@ -36,6 +36,10 @@ class ApiProductController extends BaseController {
 			$queryParam[] = $_GET['style'];
 		}
 		if(!empty($_GET['company'])) {
+			$where[] = "company = ?";
+			$queryParam[] = $_GET['company'];
+		}
+		if(!empty($_GET['is_group'])) {
 			$where[] = "company = ?";
 			$queryParam[] = $_GET['company'];
 		}
@@ -92,6 +96,14 @@ class ApiProductController extends BaseController {
 	{
 		$item['picture_url'] = $this->getBaseUrl().'/upload/'.$item['picture'];
 		$item['thumb_url'] = $this->getBaseUrl().'/upload/'.$item['thumb'];
+		$item['icon_1_url'] = $this->getBaseUrl().'/upload/'.$item['icon_1'];
+		$item['icon_2_url'] = $this->getBaseUrl().'/upload/'.$item['icon_2'];
+		$item['icon_3_url'] = $this->getBaseUrl().'/upload/'.$item['icon_3'];
+		$item['icon_4_url'] = $this->getBaseUrl().'/upload/'.$item['icon_4'];
+		if(!is_file('upload/'.$item['icon_1'])) $item['icon_1_url'] = null;
+		if(!is_file('upload/'.$item['icon_2'])) $item['icon_2_url'] = null;
+		if(!is_file('upload/'.$item['icon_3'])) $item['icon_3_url'] = null;
+		if(!is_file('upload/'.$item['icon_4'])) $item['icon_4_url'] = null;
 		$item['total_view'] = R::getCell('SELECT SUM(view_count) FROM product_view WHERE product_id=?', [$item['id']]) | '0';
 		$item['total_add'] = R::getCell('SELECT SUM(add_count) FROM product_add WHERE product_id=?', [$item['id']]) | '0';
 	}

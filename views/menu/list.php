@@ -20,7 +20,7 @@
 				<td>{$item->name}</td>
 				<td><img src="upload/{$item->picture}" width="80" height="60"></td>
 				<td>
-					<a href="{siteUrl url="/menu/edit/{$item->id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					<a href="{siteUrl url="/menu/edit/{$item->id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 				</td>
 			</tr>
 			{/foreach}

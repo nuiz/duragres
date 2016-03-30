@@ -25,8 +25,8 @@
 				<td><img src="upload/{$item->picture}" width="80" height="60"></td>
 				<td>{$item->name}</td>
 				<td>
-					<a href="{siteUrl url="/news/edit/{$item->id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-					<a class="confirm-beforeclick" href="{siteUrl url="/news/delete/{$item->id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					<a href="{siteUrl url="/news/edit/{$item->id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+					<a class="confirm-beforeclick" href="{siteUrl url="/news/delete/{$item->id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 				</td>
 			</tr>
 			{/foreach}

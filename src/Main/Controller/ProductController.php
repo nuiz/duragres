@@ -57,6 +57,10 @@ class ProductController extends BaseController {
 	{
 		$attr = $this->slim->request->post();
 		$attr['picture'] = new \upload($_FILES['picture']);
+		$attr['icon_1'] = new \upload($_FILES['icon_1']);
+		$attr['icon_2'] = new \upload($_FILES['icon_2']);
+		$attr['icon_3'] = new \upload($_FILES['icon_3']);
+		$attr['icon_4'] = new \upload($_FILES['icon_4']);
 		// $attr['thumb'] = new \upload($_FILES['thumb']);
 
 		$form = new ProductForm($attr);
@@ -79,6 +83,10 @@ class ProductController extends BaseController {
 	public function post_edit($id){
 		$attr = $this->slim->request->post();
 		$attr['picture'] = new \upload($_FILES['picture']);
+		$attr['icon_1'] = new \upload($_FILES['icon_1']);
+		$attr['icon_2'] = new \upload($_FILES['icon_2']);
+		$attr['icon_3'] = new \upload($_FILES['icon_3']);
+		$attr['icon_4'] = new \upload($_FILES['icon_4']);
 		// $attr['thumb'] = new \upload($_FILES['thumb']);
 
 		$attr['id'] = $id;

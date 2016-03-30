@@ -27,8 +27,8 @@
 				<td><a href="{siteUrl url="/upload/{$item.pdf_path}"}" download>Download</a></td>
 				<td>{if $item.is_new}<span class="badge" style="background: rgb(240, 77, 25);">New</span>{/if}</td>
 				<td>
-					<a href="{siteUrl url="/ecatalog/edit/{$item.id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-					<a class="confirm-beforeclick" href="{siteUrl url="/ecatalog/delete/{$item.id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					<a href="{siteUrl url="/ecatalog/edit/{$item.id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+					<a class="confirm-beforeclick" href="{siteUrl url="/ecatalog/delete/{$item.id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 				</td>
 			</tr>
 			{/foreach}

@@ -44,6 +44,20 @@ class Route {
 		$this->slim->post('/ecatalog/edit/:id', 'Main\Controller\ECatalogController:post_edit');
 		$this->slim->get('/ecatalog/delete/:id', 'Main\Controller\ECatalogController:delete');
 
+		$this->slim->get('/room', 'Main\Controller\RoomController:index');
+		$this->slim->get('/room/add', 'Main\Controller\RoomController:add');
+		$this->slim->post('/room/add', 'Main\Controller\RoomController:post_add');
+		$this->slim->get('/room/edit/:id', 'Main\Controller\RoomController:edit');
+		$this->slim->post('/room/edit/:id', 'Main\Controller\RoomController:post_edit');
+		$this->slim->get('/room/delete/:id', 'Main\Controller\RoomController:delete');
+
+		$this->slim->get('/room/:room_id/pattern', 'Main\Controller\RoomPatternController:index');
+		$this->slim->get('/room/:room_id/pattern/add', 'Main\Controller\RoomPatternController:add');
+		$this->slim->post('/room/:room_id/pattern/add', 'Main\Controller\RoomPatternController:post_add');
+		$this->slim->get('/room/:room_id/pattern/edit/:id', 'Main\Controller\RoomPatternController:edit');
+		$this->slim->post('/room/:room_id/pattern/edit/:id', 'Main\Controller\RoomPatternController:post_edit');
+		$this->slim->get('/room/:room_id/pattern/delete/:id', 'Main\Controller\RoomPatternController:delete');
+
 		$this->slim->get('/menu', 'Main\Controller\MenuController:index');
 		$this->slim->get('/menu/edit/:id', 'Main\Controller\MenuController:edit');
 		$this->slim->post('/menu/edit/:id', 'Main\Controller\MenuController:post_edit');

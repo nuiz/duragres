@@ -9,3 +9,7 @@
 .underline {
 	text-decoration: underline;
 }
+
+.old-picture-block img.picture {
+	max-width: 100%;
+}
