@@ -13,9 +13,8 @@
 				<th>#</th>
 				<th>Picture</th>
 				<th>Name</th>
-				<th>Width</th>
-				<th>Height</th>
-				<th>Size Unit</th>
+				<th>Size</th>
+				<th>Tile Size</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -25,9 +24,8 @@
 				<td>{$item.id}</td>
 				<td><img src="../../upload/{$item.picture}" height="60"></td>
 				<td>{$item.name}</td>
-				<td>{$item.width}</td>
-				<td>{$item.height}</td>
-				<td>{$item.size_unit}</td>
+				<td>{$item.width}x{$item.height} Meter</td>
+				<td>{$item.tile_width}x{$item.tile_height} {$item.tile_size_unit}</td>
 				<td>
 					<a href="{siteUrl url="/room/{$room->id}/pattern/edit/{$item.id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 					<a class="confirm-beforeclick" href="{siteUrl url="/room/{$room->id}/pattern/delete/{$item.id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>

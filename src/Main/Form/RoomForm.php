@@ -8,9 +8,7 @@ class RoomForm extends Form
 	public $attr = [
 		// 'created_at'=> '',
 		// 'updated_at'=> '',
-		'name'=> '',
-		'width'=> '',
-		'height'=> ''
+		'name'=> ''
 	];
 
 	public $successDeleteFiles = [], $failedDeleteFiles = [];
@@ -24,15 +22,9 @@ class RoomForm extends Form
 		if(empty($this->attr['name'])) {
 			$this->pushError("name empty");
 		}
-		if(empty($this->attr['width'])) {
-			$this->pushError("width empty");
-		}
-		if(empty($this->attr['height'])) {
-			$this->pushError("height empty");
-		}
-
-		if(R::count("room", "name = ? AND id != ?", [$this->attr["name"], @$this->attr["id"]]) > 0) {
-			$this->pushError("Duplicate name.".$this->attr["name"]);
+		$id = @$this->attr["id"]? $this->attr["id"]: 0;
+		if(R::count("room", "name = ? AND id != ?", [$this->attr["name"], $id]) > 0) {
+			$this->pushError("Duplicate name ".$this->attr["name"]);
 		}
 
 		return !$this->error;
@@ -50,9 +42,6 @@ class RoomForm extends Form
 			$item->updated_at = date('Y-m-d H:i:s');
 		}
 		$item->name = $this->getAttr('name');
-		$item->width = $this->getAttr('width');
-		$item->height = $this->getAttr('height');
-
 		$success = R::store($item);
 
 		if($success) {

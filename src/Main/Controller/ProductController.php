@@ -3,6 +3,7 @@ namespace Main\Controller;
 
 use RedBeanPHP\R;
 use Main\Form\ProductForm;
+use Main\Helper\IconProduct;
 
 class ProductController extends BaseController {
 	public function index()
@@ -50,17 +51,18 @@ class ProductController extends BaseController {
 
 	public function add()
 	{
-		$this->slim->render("product/add.php", ['form'=> new ProductForm()]);
+		$icons = IconProduct::getIcons();
+		$this->slim->render("product/add.php", ['form'=> new ProductForm(), 'icons'=> $icons]);
 	}
 
 	public function post_add()
 	{
 		$attr = $this->slim->request->post();
 		$attr['picture'] = new \upload($_FILES['picture']);
-		$attr['icon_1'] = new \upload($_FILES['icon_1']);
-		$attr['icon_2'] = new \upload($_FILES['icon_2']);
-		$attr['icon_3'] = new \upload($_FILES['icon_3']);
-		$attr['icon_4'] = new \upload($_FILES['icon_4']);
+		// $attr['icon_1'] = new \upload($_FILES['icon_1']);
+		// $attr['icon_2'] = new \upload($_FILES['icon_2']);
+		// $attr['icon_3'] = new \upload($_FILES['icon_3']);
+		// $attr['icon_4'] = new \upload($_FILES['icon_4']);
 		// $attr['thumb'] = new \upload($_FILES['thumb']);
 
 		$form = new ProductForm($attr);
@@ -76,17 +78,19 @@ class ProductController extends BaseController {
 
 	public function edit($id)
 	{
+		$icons = IconProduct::getIcons();
 		$item = R::findOne('product', 'id=?', [$id]);
-		$this->slim->render("product/add.php", ['form'=> new ProductForm($item->export())]);
+		$this->slim->render("product/add.php", ['form'=> new ProductForm($item->export()), 'icons'=> $icons]);
 	}
 
-	public function post_edit($id){
+	public function post_edit($id)
+	{
 		$attr = $this->slim->request->post();
 		$attr['picture'] = new \upload($_FILES['picture']);
-		$attr['icon_1'] = new \upload($_FILES['icon_1']);
-		$attr['icon_2'] = new \upload($_FILES['icon_2']);
-		$attr['icon_3'] = new \upload($_FILES['icon_3']);
-		$attr['icon_4'] = new \upload($_FILES['icon_4']);
+		// $attr['icon_1'] = new \upload($_FILES['icon_1']);
+		// $attr['icon_2'] = new \upload($_FILES['icon_2']);
+		// $attr['icon_3'] = new \upload($_FILES['icon_3']);
+		// $attr['icon_4'] = new \upload($_FILES['icon_4']);
 		// $attr['thumb'] = new \upload($_FILES['thumb']);
 
 		$attr['id'] = $id;

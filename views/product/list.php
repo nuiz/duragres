@@ -69,6 +69,10 @@
 					</select>
 				</div>
 				<div class="col-md-3 form-group">
+					<label>Style</label>
+					<input type="text" class="form-control" name="style" value="{$form.style}" placeholder="">
+				</div>
+				<div class="col-md-12 form-group">
 					<label style="opacity: 0;">submit</label>
 					<button type="submit" class="form-control btn btn-info">Filter</button>
 				</div>

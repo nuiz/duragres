@@ -3,6 +3,7 @@ namespace Main\Controller;
 
 use RedBeanPHP\R;
 use Main\Form\RoomForm;
+use Main\Helper\FlashSession;
 
 class RoomController extends BaseController
 {
@@ -24,7 +25,9 @@ class RoomController extends BaseController
 
 	public function add()
 	{
-		$this->slim->render("room/add.php", ['form'=> new RoomForm()]);
+		$form = new RoomForm();
+		$form->error = FlashSession::getInstance()->get("add_room_form_error", false);
+		$this->slim->render("room/add.php", ['form'=> $form]);
 	}
 
 	public function post_add()
@@ -37,6 +40,7 @@ class RoomController extends BaseController
 			$this->slim->redirect($this->slim->request()->getRootUri().'/room');
 		}
 		else {
+			FlashSession::getInstance()->set("add_room_form_error", $form->error);
 			echo $this->goBack(); exit();
 			// $this->slim->render("room/add.php", ['form'=> $form]);
 		}
@@ -45,7 +49,9 @@ class RoomController extends BaseController
 	public function edit($id)
 	{
 		$item = R::findOne('room', 'id=?', [$id]);
-		$this->slim->render("room/add.php", ['form'=> new RoomForm($item->export())]);
+		$form = new RoomForm($item->export());
+		$form->error = FlashSession::getInstance()->get("edit_room_form_error", false);
+		$this->slim->render("room/add.php", ['form'=> $form]);
 	}
 
 	public function post_edit($id){
@@ -58,6 +64,7 @@ class RoomController extends BaseController
 			$this->slim->redirect($this->slim->request()->getRootUri().'/room');
 		}
 		else {
+			FlashSession::getInstance()->set("edit_room_form_error", $form->error);
 			echo $this->goBack(); exit();
 			// $this->slim->render("room/add.php", ['form'=> $form]);
 		}

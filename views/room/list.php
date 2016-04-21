@@ -12,8 +12,6 @@
 			<tr>
 				<th>#</th>
 				<th>Name</th>
-				<th>Width</th>
-				<th>Height</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -23,8 +21,6 @@
 			<tr>
 				<td>{$item.id}</td>
 				<td>{$item.name}</td>
-				<td>{$item.width} Meter</td>
-				<td>{$item.height} Meter</td>
 				<td>
 					<a href="{siteUrl url="/room/{$item.id}/pattern"}">Manage Pattern</a>
 				</td>

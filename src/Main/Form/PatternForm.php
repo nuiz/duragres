@@ -12,8 +12,11 @@ class PatternForm extends Form
 		'name'=> '',
 		'width'=> '0',
 		'height'=> '0',
-		'size_unit'=> 'inch',
+		'tile_width'=> '0',
+		'tile_height'=> '0',
+		'tile_size_unit'=> 'inch',
 		'picture'=> '',
+		'thumb'=> '',
 		'product_use'=> []
 	];
 
@@ -34,13 +37,22 @@ class PatternForm extends Form
 		if(empty($this->attr['height'])) {
 			$this->pushError("height empty");
 		}
-		if(empty($this->attr['size_unit'])) {
-			$this->pushError("size unit empty");
+		if(empty($this->attr['tile_width'])) {
+			$this->pushError("tile_width empty");
+		}
+		if(empty($this->attr['tile_height'])) {
+			$this->pushError("tile_height empty");
+		}
+		if(empty($this->attr['tile_size_unit'])) {
+			$this->pushError("tile_size_unit empty");
 		}
 
 		if($this->emptyAttr('id')) {
 			if(!$this->attr['picture']->uploaded) {
 				$this->pushError("picture empty");
+			}
+			if(!$this->attr['thumb']->uploaded) {
+				$this->pushError("thumb empty");
 			}
 		}
 
@@ -62,7 +74,9 @@ class PatternForm extends Form
 		$item->name = $this->getAttr('name');
 		$item->width = $this->getAttr('width');
 		$item->height = $this->getAttr('height');
-		$item->size_unit = $this->getAttr('size_unit');
+		$item->tileWidth = $this->getAttr('tile_width');
+		$item->tileHeight = $this->getAttr('tile_height');
+		$item->tileSizeUnit = $this->getAttr('tile_size_unit');
 		$item->product_use = ','.implode(',', $this->getAttr('product_use')).',';
 
 		if(!$this->emptyAttr('picture') && $this->attr['picture']->uploaded) {
@@ -75,6 +89,21 @@ class PatternForm extends Form
 			$this->pushDeleteWhenFailed('upload/'.$picture->file_dst_name);
 
 			$item->picture = $picture->file_dst_name;
+		}
+
+		if(!$this->emptyAttr('thumb') && $this->attr['thumb']->uploaded) {
+			$thumb = $this->getAttr('thumb');
+			$thumb->file_new_name_body = $this->generateName("pattern_thumb_");
+	    $thumb->image_convert = 'jpeg';
+			$thumb->image_resize = true;
+			$thumb->image_x = 150;
+			$thumb->image_y = 150;
+			$thumb->process('upload/');
+
+			$this->pushDeleteWhenSuccess('upload/'.$item->thumb);
+			$this->pushDeleteWhenFailed('upload/'.$thumb->file_dst_name);
+
+			$item->thumb = $thumb->file_dst_name;
 		}
 
 		$success = R::store($item);

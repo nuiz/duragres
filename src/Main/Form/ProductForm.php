@@ -87,6 +87,11 @@ class ProductForm extends Form
 		$product->pcs_ctn = $this->getAttr('pcs_ctn');
 		$product->sqm_ctn = $this->getAttr('sqm_ctn');
 
+		$product->icon_1 = $this->getAttr('icon_1');
+		$product->icon_2 = $this->getAttr('icon_2');
+		$product->icon_3 = $this->getAttr('icon_3');
+		$product->icon_4 = $this->getAttr('icon_4');
+
 		$oldPicture = null;
 		$picture = null;
 		$oldThumb = null;
@@ -136,109 +141,109 @@ class ProductForm extends Form
 			$product->thumb = $thumb->file_dst_name;
 		}
 
-		$oldIcon1 = null;
-		$icon1 = null;
-		if(!$this->emptyAttr('icon_1') && $this->attr['icon_1']->uploaded) {
-			$icon1 = $this->getAttr('icon_1');
-			$icon1->file_new_name_body = $this->generateName("product_icon_");
-	    $icon1->image_convert = 'jpeg';
-
-	    // $picture->image_ratio_y = true;
-			if($icon1->image_src_x > 150 || $icon1->image_src_y > 150) {
-				$icon1->image_resize = true;
-				if($icon1->image_src_x > $icon1->image_src_y) {
-					$icon1->image_ratio_y = true;
-			    $icon1->image_x = 150;
-				}
-				else {
-					$icon1->image_ratio_x = true;
-			    $icon1->image_y = 150;
-				}
-			}
-
-			$icon1->process('upload/');
-
-			$oldIcon1 = $product->icon_1;
-			$product->icon_1 = $icon1->file_dst_name;
-		}
-
-		$oldIcon2 = null;
-		$icon2 = null;
-		if(!$this->emptyAttr('icon_2') && $this->attr['icon_2']->uploaded) {
-			$icon2 = $this->getAttr('icon_2');
-			$icon2->file_new_name_body = $this->generateName("product_icon_");
-	    $icon2->image_convert = 'jpeg';
-
-	    // $picture->image_ratio_y = true;
-			if($icon2->image_src_x > 150 || $icon2->image_src_y > 150) {
-				$icon2->image_resize = true;
-				if($icon2->image_src_x > $icon2->image_src_y) {
-					$icon2->image_ratio_y = true;
-			    $icon2->image_x = 150;
-				}
-				else {
-					$icon2->image_ratio_x = true;
-			    $icon2->image_y = 150;
-				}
-			}
-
-			$icon2->process('upload/');
-
-			$oldIcon2 = $product->icon_2;
-			$product->icon_2 = $icon2->file_dst_name;
-		}
-
-		$oldIcon3 = null;
-		$icon3 = null;
-		if(!$this->emptyAttr('icon_3') && $this->attr['icon_3']->uploaded) {
-			$icon3 = $this->getAttr('icon_3');
-			$icon3->file_new_name_body = $this->generateName("product_icon_");
-	    $icon3->image_convert = 'jpeg';
-
-	    // $picture->image_ratio_y = true;
-			if($icon3->image_src_x > 150 || $icon3->image_src_y > 150) {
-				$icon3->image_resize = true;
-				if($icon3->image_src_x > $icon3->image_src_y) {
-					$icon3->image_ratio_y = true;
-			    $icon3->image_x = 150;
-				}
-				else {
-					$icon3->image_ratio_x = true;
-			    $icon3->image_y = 150;
-				}
-			}
-
-			$icon3->process('upload/');
-
-			$oldIcon3 = $product->icon_3;
-			$product->icon_3 = $icon3->file_dst_name;
-		}
-
-		$oldIcon4 = null;
-		$icon4 = null;
-		if(!$this->emptyAttr('icon_4') && $this->attr['icon_4']->uploaded) {
-			$icon4 = $this->getAttr('icon_4');
-			$icon4->file_new_name_body = $this->generateName("product_icon_");
-	    $icon4->image_convert = 'jpeg';
-
-	    // $picture->image_ratio_y = true;
-			if($icon4->image_src_x > 150 || $icon4->image_src_y > 150) {
-				$icon4->image_resize = true;
-				if($icon4->image_src_x > $icon4->image_src_y) {
-					$icon4->image_ratio_y = true;
-			    $icon4->image_x = 150;
-				}
-				else {
-					$icon4->image_ratio_x = true;
-			    $icon4->image_y = 150;
-				}
-			}
-
-			$icon4->process('upload/');
-
-			$oldIcon4 = $product->icon_4;
-			$product->icon_4 = $icon4->file_dst_name;
-		}
+		// $oldIcon1 = null;
+		// $icon1 = null;
+		// if(!$this->emptyAttr('icon_1') && $this->attr['icon_1']->uploaded) {
+		// 	$icon1 = $this->getAttr('icon_1');
+		// 	$icon1->file_new_name_body = $this->generateName("product_icon_");
+	  //   // $icon1->image_convert = 'jpeg';
+		//
+	  //   // $picture->image_ratio_y = true;
+		// 	if($icon1->image_src_x > 150 || $icon1->image_src_y > 150) {
+		// 		$icon1->image_resize = true;
+		// 		if($icon1->image_src_x > $icon1->image_src_y) {
+		// 			$icon1->image_ratio_y = true;
+		// 	    $icon1->image_x = 150;
+		// 		}
+		// 		else {
+		// 			$icon1->image_ratio_x = true;
+		// 	    $icon1->image_y = 150;
+		// 		}
+		// 	}
+		//
+		// 	$icon1->process('upload/');
+		//
+		// 	$oldIcon1 = $product->icon_1;
+		// 	$product->icon_1 = $icon1->file_dst_name;
+		// }
+		//
+		// $oldIcon2 = null;
+		// $icon2 = null;
+		// if(!$this->emptyAttr('icon_2') && $this->attr['icon_2']->uploaded) {
+		// 	$icon2 = $this->getAttr('icon_2');
+		// 	$icon2->file_new_name_body = $this->generateName("product_icon_");
+	  //   // $icon2->image_convert = 'jpeg';
+		//
+	  //   // $picture->image_ratio_y = true;
+		// 	if($icon2->image_src_x > 150 || $icon2->image_src_y > 150) {
+		// 		$icon2->image_resize = true;
+		// 		if($icon2->image_src_x > $icon2->image_src_y) {
+		// 			$icon2->image_ratio_y = true;
+		// 	    $icon2->image_x = 150;
+		// 		}
+		// 		else {
+		// 			$icon2->image_ratio_x = true;
+		// 	    $icon2->image_y = 150;
+		// 		}
+		// 	}
+		//
+		// 	$icon2->process('upload/');
+		//
+		// 	$oldIcon2 = $product->icon_2;
+		// 	$product->icon_2 = $icon2->file_dst_name;
+		// }
+		//
+		// $oldIcon3 = null;
+		// $icon3 = null;
+		// if(!$this->emptyAttr('icon_3') && $this->attr['icon_3']->uploaded) {
+		// 	$icon3 = $this->getAttr('icon_3');
+		// 	$icon3->file_new_name_body = $this->generateName("product_icon_");
+	  //   // $icon3->image_convert = 'jpeg';
+		//
+	  //   // $picture->image_ratio_y = true;
+		// 	if($icon3->image_src_x > 150 || $icon3->image_src_y > 150) {
+		// 		$icon3->image_resize = true;
+		// 		if($icon3->image_src_x > $icon3->image_src_y) {
+		// 			$icon3->image_ratio_y = true;
+		// 	    $icon3->image_x = 150;
+		// 		}
+		// 		else {
+		// 			$icon3->image_ratio_x = true;
+		// 	    $icon3->image_y = 150;
+		// 		}
+		// 	}
+		//
+		// 	$icon3->process('upload/');
+		//
+		// 	$oldIcon3 = $product->icon_3;
+		// 	$product->icon_3 = $icon3->file_dst_name;
+		// }
+		//
+		// $oldIcon4 = null;
+		// $icon4 = null;
+		// if(!$this->emptyAttr('icon_4') && $this->attr['icon_4']->uploaded) {
+		// 	$icon4 = $this->getAttr('icon_4');
+		// 	$icon4->file_new_name_body = $this->generateName("product_icon_");
+	  //   // $icon4->image_convert = 'jpeg';
+		//
+	  //   // $picture->image_ratio_y = true;
+		// 	if($icon4->image_src_x > 150 || $icon4->image_src_y > 150) {
+		// 		$icon4->image_resize = true;
+		// 		if($icon4->image_src_x > $icon4->image_src_y) {
+		// 			$icon4->image_ratio_y = true;
+		// 	    $icon4->image_x = 150;
+		// 		}
+		// 		else {
+		// 			$icon4->image_ratio_x = true;
+		// 	    $icon4->image_y = 150;
+		// 		}
+		// 	}
+		//
+		// 	$icon4->process('upload/');
+		//
+		// 	$oldIcon4 = $product->icon_4;
+		// 	$product->icon_4 = $icon4->file_dst_name;
+		// }
 
 		// $oldThumb = null;
 		// $thumb = null;
@@ -265,18 +270,18 @@ class ProductForm extends Form
 			if(!is_null($oldThumb)) {
 				@unlink('upload/'.$oldThumb);
 			}
-			if(!is_null($oldIcon1)) {
-				@unlink('upload/'.$oldIcon1);
-			}
-			if(!is_null($oldIcon2)) {
-				@unlink('upload/'.$oldIcon2);
-			}
-			if(!is_null($oldIcon3)) {
-				@unlink('upload/'.$oldIcon3);
-			}
-			if(!is_null($oldIcon4)) {
-				@unlink('upload/'.$oldIcon4);
-			}
+			// if(!is_null($oldIcon1)) {
+			// 	@unlink('upload/'.$oldIcon1);
+			// }
+			// if(!is_null($oldIcon2)) {
+			// 	@unlink('upload/'.$oldIcon2);
+			// }
+			// if(!is_null($oldIcon3)) {
+			// 	@unlink('upload/'.$oldIcon3);
+			// }
+			// if(!is_null($oldIcon4)) {
+			// 	@unlink('upload/'.$oldIcon4);
+			// }
 		}
 	}
 

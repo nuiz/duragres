@@ -21,67 +21,89 @@
 			<input type="file" class="form-control input-picture" name="picture" value="{$form->attr.picture}" accept="image/*" {if $form->isNew()}required{/if}>
 			<span class="help-block">รูปภาพควรมีขนาดไม่เกิน 512x512 pixel</span>
 
-			{if $form->attr.picture}
-			<div class="panel panel-info old-picture-block">
+
+			<div class="panel panel-info old-picture-block {if $form->attr.picture == ""}hidden{/if}">
 				<div class="panel-heading">Old Picture</div>
 				<div class="panel-body text-center">
 					<img class="picture" src="../../upload/{$form->attr.picture}">
 				</div>
 			</div>
-			{/if}
+
 		</div>
 		<div class="form-group picture">
 			<label>ICON 1</label>
-			<input type="file" class="form-control input-picture" name="icon_1" value="{$form->attr.icon_1}" accept="image/*">
-			<span class="help-block">รูปภาพควรมีขนาดไม่เกิน 150x150 pixel</span>
+			<!-- <input type="file" class="form-control input-picture" name="icon_1" value="{$form->attr.icon_1}" accept="image/*"> -->
+			<!-- <span class="help-block">รูปภาพควรมีขนาดไม่เกิน 150x150 pixel</span> -->
+			<select class="form-control select-icon" name="icon_1" id="type" required="">
+				<option value="">-None-</option>
+				{foreach key=key item=item from=$icons}
+				<option {if $form->attr.icon_1==$item}selected{/if}>{$item}</option>
+				{/foreach}
+			</select>
 
-			{if $form->attr.icon_1}
-			<div class="panel panel-info old-picture-block">
-				<div class="panel-heading">Old ICON 1</div>
+			<div class="panel panel-info old-picture-block icon {if $form->attr.icon_1}hidden{/if}">
+				<div class="panel-heading">ICON 1</div>
 				<div class="panel-body text-center">
-					<img class="picture" src="../../upload/{$form->attr.icon_1}">
+					<img class="picture" src="../../icon/{$form->attr.icon_1 == ""}">
 				</div>
 			</div>
-			{/if}
 		</div>
 		<div class="form-group picture">
 			<label>ICON 2</label>
-			<input type="file" class="form-control input-picture" name="icon_2" value="{$form->attr.icon_2}" accept="image/*">
-			<span class="help-block">รูปภาพควรมีขนาดไม่เกิน 150x150 pixel</span>
+			<!-- <input type="file" class="form-control input-picture" name="icon_2" value="{$form->attr.icon_2}" accept="image/*"> -->
+			<!-- <span class="help-block">รูปภาพควรมีขนาดไม่เกิน 150x150 pixel</span> -->
+			<select class="form-control select-icon" name="icon_2" id="type" required="">
+				<option value="">-None-</option>
+				{foreach key=key item=item from=$icons}
+				<option {if $form->attr.icon_2==$item}selected{/if}>{$item}</option>
+				{/foreach}
+			</select>
 
 			{if $form->attr.icon_2}
-			<div class="panel panel-info old-picture-block">
+			<div class="panel panel-info old-picture-block {if $form->attr.icon_2}hidden{/if}">
 				<div class="panel-heading">Old ICON 2</div>
 				<div class="panel-body text-center">
-					<img class="picture" src="../../upload/{$form->attr.icon_2}">
+					<img class="picture" src="../../icon/{$form->attr.icon_2 == ""}">
 				</div>
 			</div>
 			{/if}
 		</div>
 		<div class="form-group picture">
 			<label>ICON 3</label>
-			<input type="file" class="form-control input-picture" name="icon_3" value="{$form->attr.icon_3}" accept="image/*">
-			<span class="help-block">รูปภาพควรมีขนาดไม่เกิน 150x150 pixel</span>
+			<!-- <input type="file" class="form-control input-picture" name="icon_3" value="{$form->attr.icon_3}" accept="image/*"> -->
+			<!-- <span class="help-block">รูปภาพควรมีขนาดไม่เกิน 150x150 pixel</span> -->
+			<select class="form-control select-icon {if $form->attr.icon_3 == ""}hidden{/if}" name="icon_3" id="type" required="">
+				<option value="">-None-</option>
+				{foreach key=key item=item from=$icons}
+				<option {if $form->attr.icon_3==$item}selected{/if}>{$item}</option>
+				{/foreach}
+			</select>
 
 			{if $form->attr.icon_3}
 			<div class="panel panel-info old-picture-block">
 				<div class="panel-heading">Old ICON 3</div>
 				<div class="panel-body text-center">
-					<img class="picture" src="../../upload/{$form->attr.icon_3}">
+					<img class="picture" src="../../icon/{$form->attr.icon_3}">
 				</div>
 			</div>
 			{/if}
 		</div>
 		<div class="form-group picture">
 			<label>ICON 4</label>
-			<input type="file" class="form-control input-picture" name="icon_4" value="{$form->attr.icon_4}" accept="image/*">
-			<span class="help-block">รูปภาพควรมีขนาดไม่เกิน 150x150 pixel</span>
+			<!-- <input type="file" class="form-control input-picture" name="icon_4" value="{$form->attr.icon_4}" accept="image/*"> -->
+			<!-- <span class="help-block">รูปภาพควรมีขนาดไม่เกิน 150x150 pixel</span> -->
+			<select class="form-control select-icon {if $form->attr.icon_4 == ""}hidden{/if}" name="icon_4" id="type" required="">
+				<option value="">-None-</option>
+				{foreach key=key item=item from=$icons}
+				<option {if $form->attr.icon_4==$item}selected{/if}>{$item}</option>
+				{/foreach}
+			</select>
 
 			{if $form->attr.icon_4}
 			<div class="panel panel-info old-picture-block">
 				<div class="panel-heading">Old ICON 4</div>
 				<div class="panel-body text-center">
-					<img class="picture" src="../../upload/{$form->attr.icon_4}">
+					<img class="picture" src="../../icon/{$form->attr.icon_4}">
 				</div>
 			</div>
 			{/if}
@@ -113,7 +135,6 @@
 				<option value="">-Please Select-</option>
 
 
-
 				<option data-type-value="Floor Tiles" data-size_unit-value="inch" value="8x8" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='8x8' && $form->attr.size_unit=='inch'}selected{/if}>8x8 inch</option>
 				<option data-type-value="Floor Tiles" data-size_unit-value="inch" value="12x12" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='12x12' && $form->attr.size_unit=='inch'}selected{/if}>12x12 inch</option>
 				<option data-type-value="Floor Tiles" data-size_unit-value="inch" value="13x13" {if $form->attr.type=='Floor Tiles' && $form->attr.size=='13x13' && $form->attr.size_unit=='inch'}selected{/if}>13x13 inch</option>
@@ -141,15 +162,9 @@
 			</select>
 			<input type="hidden" id="size_unit" name="size_unit" readonly="" value="{$form->attr.size_unit}">
 		</div>
-		<div class="form-group hidden">
+		<div class="form-group">
 			<label>Style</label>
-			<select name="style" class="form-control">
-				<option value="">-Please Select-</option>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-			</select>
+			<input type="text" class="form-control" name="style" value="{$form->attr.style}" placeholder="">
 		</div>
 		<div class="form-group">
 			<label>Company</label>
@@ -261,6 +276,17 @@ $(function(){
 		$elSizeUnit.val(sizeUnit);
 	});
 	changeType();
+
+	$('.form-group.picture').each(function(i, el) {
+		var $el = $(el);
+		var $picture = $('.picture', $el);
+		var $pictureBlock = $('.old-picture-block', $el);
+		var $select = $('.select-icon', $el).change(function(e) {
+			$picture.attr('src', '../../icon/'+$select.val());
+			if($select.val() == "") $pictureBlock.addClass('hidden');
+			else $pictureBlock.removeClass('hidden');
+		});
+	});
 });
 </script>
 {/block}

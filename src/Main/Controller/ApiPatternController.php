@@ -41,9 +41,23 @@ class ApiPatternController extends BaseController {
 		exit();
 	}
 
+	public function getByName()
+	{
+		$roomName = @$_GET["room_name"];
+		$room = R::findOne('room', 'name=?', [$roomName]);
+		$item = R::findOne('room_pattern', 'room_id=? AND id=?', [$id]);
+		$itemExport = $item->getProperties();
+		$this->build($itemExport);
+
+		header('Content-Type: application/json');
+		echo json_encode($itemExport, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+		exit();
+	}
+
 	public function build(&$item)
 	{
 		$item['picture_url'] = $this->getBaseUrl().'/upload/'.$item['picture'];
+		$item['thumb_url'] = $this->getBaseUrl().'/upload/'.$item['thumb'];
 		// $item['product_use'] = trim($item['product_use'], ",");
 		// $item['product_use'] = explode(",", $item['product_use']);
 		unset($item['product_use']);

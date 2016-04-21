@@ -43,8 +43,8 @@ class ApiProductController extends BaseController {
 			$where[] = "company = ?";
 			$queryParam[] = $_GET['company'];
 		}
-		if(!empty($_GET['pattern_id'])) {
-			$pattern = R::findOne("room_pattern", "id=?", [$_GET['pattern_id']]);
+		if(!empty($_GET['pattern_name']) && !empty($_GET['room_name'])) {
+			$pattern = R::findOne("room_pattern", "name=?", [$_GET['room_name']]);
 			$ids = trim($pattern["product_use"], ",");
 			$ids = explode(",", $ids);
 			$where[] = "id IN (".R::genSlots($ids).")";
@@ -103,14 +103,14 @@ class ApiProductController extends BaseController {
 	{
 		$item['picture_url'] = $this->getBaseUrl().'/upload/'.$item['picture'];
 		$item['thumb_url'] = $this->getBaseUrl().'/upload/'.$item['thumb'];
-		$item['icon_1_url'] = $this->getBaseUrl().'/upload/'.$item['icon_1'];
-		$item['icon_2_url'] = $this->getBaseUrl().'/upload/'.$item['icon_2'];
-		$item['icon_3_url'] = $this->getBaseUrl().'/upload/'.$item['icon_3'];
-		$item['icon_4_url'] = $this->getBaseUrl().'/upload/'.$item['icon_4'];
-		if(!is_file('upload/'.$item['icon_1'])) $item['icon_1_url'] = null;
-		if(!is_file('upload/'.$item['icon_2'])) $item['icon_2_url'] = null;
-		if(!is_file('upload/'.$item['icon_3'])) $item['icon_3_url'] = null;
-		if(!is_file('upload/'.$item['icon_4'])) $item['icon_4_url'] = null;
+		$item['icon_1_url'] = $this->getBaseUrl().'/icon/'.$item['icon_1'];
+		$item['icon_2_url'] = $this->getBaseUrl().'/icon/'.$item['icon_2'];
+		$item['icon_3_url'] = $this->getBaseUrl().'/icon/'.$item['icon_3'];
+		$item['icon_4_url'] = $this->getBaseUrl().'/icon/'.$item['icon_4'];
+		if(!is_file('icon/'.$item['icon_1'])) $item['icon_1_url'] = null;
+		if(!is_file('icon/'.$item['icon_2'])) $item['icon_2_url'] = null;
+		if(!is_file('icon/'.$item['icon_3'])) $item['icon_3_url'] = null;
+		if(!is_file('icon/'.$item['icon_4'])) $item['icon_4_url'] = null;
 		$item['total_view'] = R::getCell('SELECT SUM(view_count) FROM product_view WHERE product_id=?', [$item['id']]) | '0';
 		$item['total_add'] = R::getCell('SELECT SUM(add_count) FROM product_add WHERE product_id=?', [$item['id']]) | '0';
 	}
