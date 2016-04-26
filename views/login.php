@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>UM</title>
+	<title>Duragres</title>
 
 	<link rel="stylesheet" type="text/css" href="{siteUrl url='/asset/bootstrap/css/bootstrap.min.css'}">
 	<link rel="stylesheet" type="text/css" href="{siteUrl url='/asset/bootstrap/css/bootstrap-theme.min.css'}">

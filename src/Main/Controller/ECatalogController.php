@@ -3,6 +3,7 @@ namespace Main\Controller;
 
 use RedBeanPHP\R;
 use Main\Form\ECatalogForm;
+use Main\Helper\FlashSession;
 
 class ECatalogController extends BaseController
 {
@@ -24,7 +25,9 @@ class ECatalogController extends BaseController
 
 	public function add()
 	{
-		$this->slim->render("ecatalog/add.php", ['form'=> new ECatalogForm()]);
+		$form = new ECatalogForm();
+		$form->error = FlashSession::getInstance()->get("add_ecatalog_form_error", false);
+		$this->slim->render("ecatalog/add.php", ['form'=> $form]);
 	}
 
 	public function post_add()
@@ -38,6 +41,7 @@ class ECatalogController extends BaseController
 			$this->slim->redirect($this->slim->request()->getRootUri().'/ecatalog');
 		}
 		else {
+			FlashSession::getInstance()->set("add_ecatalog_form_error", $form->error);
 			echo $this->goBack(); exit();
 			// $this->slim->render("ecatalog/add.php", ['form'=> $form]);
 		}

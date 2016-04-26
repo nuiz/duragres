@@ -6,11 +6,11 @@ use RedBeanPHP\R;
 class ApiContactdealerController extends BaseController {
 	public function index()
 	{
-		$perPage = 10;
+		$perPage = 999999;
 
 		$page = @$_GET['page']? $_GET['page']: 1;
 		$start = ($page-1) * $perPage;
-		
+
 		$where = [];
 		$where[] = 1;
 		$queryParam = [];
@@ -18,7 +18,7 @@ class ApiContactdealerController extends BaseController {
 			$where[] = "geo_id = ?";
 			$queryParam[] = $_GET['geo_id'];
 		}
-		
+
 		$where = implode(" AND ", $where);
 		$queryParam[] = $start;
 		$queryParam[] = $perPage;

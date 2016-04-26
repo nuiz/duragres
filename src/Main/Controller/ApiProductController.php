@@ -43,10 +43,15 @@ class ApiProductController extends BaseController {
 			$where[] = "company = ?";
 			$queryParam[] = $_GET['company'];
 		}
-		if(!empty($_GET['pattern_name']) && !empty($_GET['room_name'])) {
-			$pattern = R::findOne("room_pattern", "name=?", [$_GET['room_name']]);
-			$ids = trim($pattern["product_use"], ",");
-			$ids = explode(",", $ids);
+		if(!empty($_GET['pattern_id'])) {
+			$pattern = R::findOne("room_pattern", "id=?", [$_GET['pattern_id']]);
+			if(isset($pattern["product_use"])) {
+				$ids = trim($pattern["product_use"], ",");
+				$ids = explode(",", $ids);
+			}
+			else {
+				$ids = [0];
+			}
 			$where[] = "id IN (".R::genSlots($ids).")";
 			$queryParam = array_merge($queryParam, $ids);
 		}
