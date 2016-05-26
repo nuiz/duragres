@@ -21,7 +21,7 @@ class Main {
 			'templates.path'=> 'views'
 			]);
 		$this->slim->setName('um');
-		R::setup('mysql:host=localhost;dbname=lighting_durag', 'lighting_durag', '111111');
+		R::setup('mysql:host=localhost;dbname=lighting_durag', 'root', '');
 		// R::setup('mysql:host=localhost;dbname=lighting_durag', 'root', 'mysql@umi');
 
 		R::ext('xdispense', function( $type ){

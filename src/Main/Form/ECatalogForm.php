@@ -39,6 +39,7 @@ class ECatalogForm extends Form
 		if(!$this->emptyAttr('id')) {
 			$ecatalog = R::findOne('ecatalog', 'id=?', [$this->getAttr('id')]);
 			$ecatalog->updated_at = date('Y-m-d H:i:s');
+			$ecatalog->sort_order = (int)R::getCell("SELECT MAX(sort_order) FROM ecatalog") + 1;
 		}
 		else {
 			$ecatalog = R::dispense('ecatalog');

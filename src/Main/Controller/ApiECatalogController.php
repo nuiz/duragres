@@ -10,7 +10,7 @@ class ApiECatalogController extends BaseController {
 
 		$page = @$_GET['page']? $_GET['page']: 1;
 		$start = ($page-1) * $perPage;
-		$items = R::find('ecatalog', 'LIMIT ?,?', [$start, $perPage]);
+		$items = R::find('ecatalog', ' ORDER BY sort_order LIMIT ?,?', [$start, $perPage]);
 		$count = R::count('ecatalog');
 		$maxPage = floor($count/$perPage) + ($count%$perPage == 0 ? 0: 1);
 
@@ -33,6 +33,19 @@ class ApiECatalogController extends BaseController {
 		echo json_encode($itemExport, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 		exit();
 	}
+
+public function add_view(){
+	$id = $this->slim->request->post()['id'];
+
+	$item = R::load('ecatalog',$id);
+	$item->view_count += 1;
+	 R::store($item);
+
+echo '555';
+	exit();
+}
+
+
 
 	public function build(&$item)
 	{

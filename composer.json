@@ -5,7 +5,8 @@
         "slim/views": "^0.1.3",
         "smarty/smarty": "^3.1",
         "wixel/gump": "dev-master",
-        "verot/class.upload.php": "dev-master"
+        "verot/class.upload.php": "dev-master",
+        "phpoffice/phpexcel": "^1.8"
     },
     "autoload": {
     	"psr-4": {

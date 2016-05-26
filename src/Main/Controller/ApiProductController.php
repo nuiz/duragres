@@ -93,14 +93,39 @@ class ApiProductController extends BaseController {
 		}
 
 		$dateStr = date('Y-m-d');
-		$productView = R::getRow('SELECT * FROM product_view WHERE product_id=? AND view_date=?', [$productId, $dateStr]);
+		$productView = R::getRow('SELECT * FROM product_room WHERE product_id=? AND view_date=?', [$productId, $dateStr]);
 		if(!$productView) {
-			R::exec('INSERT INTO product_view SET product_id=?, view_date=?', [$productId, $dateStr]);
+			R::exec('INSERT INTO product_room SET product_id=?, view_date=?', [$productId, $dateStr]);
 		}
-		R::exec('UPDATE product_view SET view_count = view_count+1 WHERE product_id=? AND view_date=?', [$productId, $dateStr]);
+		R::exec('UPDATE product_room SET view_count = view_count+1 WHERE product_id=? AND view_date=?', [$productId, $dateStr]);
 
 		header('Content-Type: application/json');
 		echo json_encode(['success'=> true], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+		exit();
+	}
+
+	public function addRoomUse()
+	{
+
+		$productId = $this->slim->request->post()['product_id'];
+		$roomName = $this->slim->request->post()['room_name'];
+
+		$item = R::findOne('product', 'id=?', [$productId]);
+		if(!$item) {
+			header('Content-Type: application/json');
+			echo json_encode(['error'=> 'NOT_FOUND_PRODUCT'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+			exit();
+		}
+
+		$dateStr = date('Y-m-d');
+		$productView = R::getRow('SELECT * FROM product_room WHERE product_id=? AND room_name=? AND view_date=?', [$productId,$roomName, $dateStr]);
+		if(!$productView) {
+			R::exec('INSERT INTO product_room SET product_id=?, room_name=? , view_date=?', [$productId,$roomName, $dateStr]);
+		}
+		R::exec('UPDATE product_room SET view_count = view_count+1 WHERE product_id=? AND room_name=? AND view_date=?', [$productId,$roomName, $dateStr]);
+
+		header('Content-Type: application/json');
+		echo json_encode(['successs'=> true], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 		exit();
 	}
 

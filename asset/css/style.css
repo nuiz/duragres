@@ -13,3 +13,13 @@
 .old-picture-block img.picture {
 	max-width: 100%;
 }
+
+.form-move {
+	margin-top: 10px;
+	padding: 4px;
+	border: 2px solid #666666;
+	border-radius: 4px;
+	background: whitesmoke;
+	z-index: 1;
+	position: absolute;
+}

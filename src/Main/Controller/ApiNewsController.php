@@ -11,7 +11,7 @@ class ApiNewsController extends BaseController {
 
 		$page = @$_GET['page']? $_GET['page']: 1;
 		$start = ($page-1) * $perPage;
-		$items = R::find('news', 'LIMIT ?,?', [$start, $perPage]);
+		$items = R::find('news', ' ORDER BY sort_order LIMIT ?,?', [$start, $perPage]);
 		$count = R::count('news');
 		$maxPage = floor($count/$perPage) + ($count%$perPage == 0 ? 0: 1);
 

@@ -6,6 +6,9 @@
 		<a href="{siteUrl url="/room/add"}" class="btn btn-info">
 			<i class="glyphicon glyphicon-plus-sign"></i> เพิ่ม
 		</a>
+		<a href="{siteUrl url="/room/stat"}" class="btn btn-info">
+			<i class="glyphicon glyphicon-stats"></i> สถิติ
+		</a>
 	<div>
 	<table class="table">
 		<thead>

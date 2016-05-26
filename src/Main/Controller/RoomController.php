@@ -77,6 +77,69 @@ class RoomController extends BaseController
 		$this->slim->redirect($this->slim->request()->getRootUri().'/room');
 	}
 
+	public function stat(){
+		$perPage = 10;
+
+		$page = @$_GET['page']? $_GET['page']: 1;
+		$start = ($page-1) * $perPage;
+
+
+	$where = [];
+	$where[] = 1;
+
+	$where = implode(" AND ", $where);
+	$queryParam[] = $start;
+	$queryParam[] = $perPage;
+
+		$form =[];
+		$form['room'] = '';
+
+		$sub = 'SELECT SUM(product_room.view_count) FROM product_room WHERE product_room.product_id = product.id';
+		$items = [];
+		$count = 0;
+		$maxPage = 0;
+
+		if(!empty($_GET["room"])){
+
+				$form["room"] = $_GET["room"];
+
+				$ids = R::getCol('SELECT product_id FROM product_room WHERE room_name = :room_name',
+		    [':room_name' => $_GET["room"]]);
+
+				if(!empty($ids)){
+				$ids = 	array_unique($ids);
+				$room = $_GET["room"];
+				$sub.=" AND product_room.room_name = '{$room}' ";
+
+				$where  =  ' id IN ('.R::genSlots($ids).')';
+				$queryParam = array_merge($ids,$queryParam);
+
+				$sql = 'SELECT *,('.$sub.') as total_room FROM product WHERE '.$where.' LIMIT ?,?';
+
+				$items = R::getAll($sql, $queryParam);
+				$count = R::count('product', $where, array_slice($queryParam, 0, -2));
+				$maxPage = floor($count/$perPage) + ($count%$perPage == 0 ? 0: 1);
+			}else{
+
+			}
+
+		}
+
+
+
+
+		$items = array_map(function($item){
+
+			if(is_null($item["total_room"])) {
+				$item["total_room"] = 0;
+			}
+			return $item;
+		}, $items);
+
+		$this->slim->render("room/stat_view.php", ['items'=> $items, 'page'=> $page, 'maxPage'=> $maxPage, 'form'=> $form ]);
+	}
+
+
 	public function build(&$item)
 	{
 	}

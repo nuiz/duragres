@@ -15,6 +15,7 @@
 				<th>Picture</th>
 				<th>Name</th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,6 +25,23 @@
 				<td><img src="upload/{$item->thumb}" width="80" height="60"></td>
 				<td><img src="upload/{$item->picture}" width="80" height="60"></td>
 				<td>{$item->name}</td>
+				<td>
+					<button class="btn btn-move">Move</button>
+					<form class="form-move" action="{siteUrl url="/news/sort_move/{$item.id}"}" style="display: none;">
+						<select class="form-control" name="position" required="">
+							<option value="">--Where--</option>
+							<option value="before">Before</option>
+							<option value="after">After</option>
+						</select>
+						<select class="form-control" name="id" required="">
+							<option value="">--Chose News--</option>
+							{foreach key=key2 item=item2 from=$itemsAll}
+							<option value="{$item2.id}">{$item2.name}</option>
+							{/foreach}
+						</select>
+						<button type="submit" class="btn btn-info form-control">Move</button>
+					</form>
+				</td>
 				<td>
 					<a href="{siteUrl url="/news/edit/{$item->id}"}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 					<a class="confirm-beforeclick" href="{siteUrl url="/news/delete/{$item->id}"}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
@@ -53,6 +71,10 @@
   </ul>
 </div>
 <script>
-
+$(function(){
+	$(".btn-move").click(function(e){
+		$(this).next().toggle();
+	});
+});
 </script>
 {/block}

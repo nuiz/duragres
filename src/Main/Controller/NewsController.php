@@ -3,6 +3,7 @@ namespace Main\Controller;
 
 use RedBeanPHP\R;
 use Main\Form\NewsForm;
+use Main\Form\NewsMoveForm;
 
 class NewsController extends BaseController {
 	public function index()
@@ -11,10 +12,12 @@ class NewsController extends BaseController {
 
 		$page = @$_GET['page']? $_GET['page']: 1;
 		$start = ($page-1) * $perPage;
-		$items = R::find('news', 'LIMIT ?,?', [$start, $perPage]);
+		$items = R::find('news', ' ORDER BY sort_order LIMIT ?,?', [$start, $perPage]);
+		$itemsAll = R::find('news', 'ORDER BY sort_order');
+		$itemsAll = R::exportAll($items);
 		$count = R::count('news');
 		$maxPage = floor($count/$perPage) + ($count%$perPage == 0 ? 0: 1);
-		$this->slim->render("news/list.php", ['items'=> $items, 'page'=> $page, 'maxPage'=> $maxPage]);
+		$this->slim->render("news/list.php", ['items'=> $items, 'itemsAll'=> $itemsAll, 'page'=> $page, 'maxPage'=> $maxPage]);
 	}
 
 	public function add()
@@ -69,6 +72,15 @@ class NewsController extends BaseController {
 		@unlink('upload/'.$item['picture']);
 		@unlink('upload/'.$item['thumb']);
 		$this->slim->redirect($this->slim->request()->getRootUri().'/news');
+	}
+
+	public function sort_move($id)
+	{
+		$attr = $this->slim->request->get();
+		$moveSort = new NewsMoveForm($id);
+		$moveSort->moveTo($attr["id"], $attr["position"]);
+
+		$this->slim->redirect($this->slim->request()->getReferrer());
 	}
 
 	public function goBack()

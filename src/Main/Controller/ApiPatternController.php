@@ -6,7 +6,7 @@ use RedBeanPHP\R;
 class ApiPatternController extends BaseController {
 	public function index()
 	{
-		$perPage = 10;
+		$perPage = 999999;
 
 		$page = @$_GET['page']? $_GET['page']: 1;
 		$start = ($page-1) * $perPage;

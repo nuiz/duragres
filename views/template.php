@@ -27,6 +27,7 @@
 		-->
 			<li {if strpos({currentUrl}, {siteUrl url="/menu"}) !== false} class="active" {/if}><a href="{siteUrl url="/menu"}">Menu</a></li>
 			<li {if strpos({currentUrl}, {siteUrl url="/room"}) !== false} class="active" {/if}><a href="{siteUrl url="/room"}">Room</a></li>
+			<li {if strpos({currentUrl}, {siteUrl url="/user"}) !== false} class="active" {/if}><a href="{siteUrl url="/user"}">User</a></li>
 			<li {if strpos({currentUrl}, {siteUrl url="/stat"}) !== false} class="active" {/if}><a href="{siteUrl url="/stat"}">Stat</a></li>
   		<li><a href="{siteUrl url="/logout"}">Logout</a></li>
 		</ul>

@@ -22,6 +22,7 @@ class Route {
 		$this->slim->get('/news/edit/:id', 'Main\Controller\NewsController:edit');
 		$this->slim->post('/news/edit/:id', 'Main\Controller\NewsController:post_edit');
 		$this->slim->get('/news/delete/:id', 'Main\Controller\NewsController:delete');
+		$this->slim->get('/news/sort_move/:id', 'Main\Controller\NewsController:sort_move');
 
 		$this->slim->get('/product', 'Main\Controller\ProductController:index');
 		$this->slim->get('/product/add', 'Main\Controller\ProductController:add');
@@ -43,6 +44,10 @@ class Route {
 		$this->slim->get('/ecatalog/edit/:id', 'Main\Controller\ECatalogController:edit');
 		$this->slim->post('/ecatalog/edit/:id', 'Main\Controller\ECatalogController:post_edit');
 		$this->slim->get('/ecatalog/delete/:id', 'Main\Controller\ECatalogController:delete');
+		$this->slim->get('/ecatalog/sort_move/:id', 'Main\Controller\ECatalogController:sort_move');
+
+
+
 
 		$this->slim->get('/room', 'Main\Controller\RoomController:index');
 		$this->slim->get('/room/add', 'Main\Controller\RoomController:add');
@@ -58,11 +63,21 @@ class Route {
 		$this->slim->post('/room/:room_id/pattern/edit/:id', 'Main\Controller\RoomPatternController:post_edit');
 		$this->slim->get('/room/:room_id/pattern/delete/:id', 'Main\Controller\RoomPatternController:delete');
 
+
+		$this->slim->get('/room/stat', 'Main\Controller\RoomController:stat');
+
+
 		$this->slim->get('/menu', 'Main\Controller\MenuController:index');
 		$this->slim->get('/menu/edit/:id', 'Main\Controller\MenuController:edit');
 		$this->slim->post('/menu/edit/:id', 'Main\Controller\MenuController:post_edit');
 
 		$this->slim->get('/stat', 'Main\Controller\StatController:index');
+		$this->slim->get('/stat/sheet', 'Main\Controller\StatController:sheet');
+
+		$this->slim->get('/user', 'Main\Controller\UserController:index');
+		$this->slim->get('/user/sheet', 'Main\Controller\UserController:sheet');
+		$this->slim->get('/user/sheet/:id', 'Main\Controller\UserController:sheetUser');
+
 
 		// api
 		$this->slim->get('/api/news', 'Main\Controller\ApiNewsController:index');
@@ -71,12 +86,14 @@ class Route {
 		$this->slim->get('/api/product', 'Main\Controller\ApiProductController:index');
 		$this->slim->get('/api/product/:id', 'Main\Controller\ApiProductController:get');
 		$this->slim->get('/api/product/addview/:id', 'Main\Controller\ApiProductController:addView');
+		$this->slim->post('/api/product/addroom_use', 'Main\Controller\ApiProductController:addRoomUse');
 
 		$this->slim->get('/api/contactdealer', 'Main\Controller\ApiContactdealerController:index');
 		$this->slim->get('/api/contactdealer/:id', 'Main\Controller\ApiContactdealerController:get');
 
 		$this->slim->get('/api/ecatalog', 'Main\Controller\ApiECatalogController:index');
 		$this->slim->get('/api/ecatalog/:id', 'Main\Controller\ApiECatalogController:get');
+		$this->slim->post('/api/ecatalog/addview', 'Main\Controller\ApiECatalogController:add_view');
 
 		$this->slim->get('/api/menu', 'Main\Controller\ApiMenuController:index');
 		$this->slim->get('/api/menu/:id', 'Main\Controller\ApiMenuController:get');

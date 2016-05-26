@@ -3,6 +3,7 @@ namespace Main\Controller;
 
 use RedBeanPHP\R;
 use Main\Form\ECatalogForm;
+use Main\Form\ECatalogMoveForm;
 use Main\Helper\FlashSession;
 
 class ECatalogController extends BaseController
@@ -13,14 +14,22 @@ class ECatalogController extends BaseController
 
 		$page = @$_GET['page']? $_GET['page']: 1;
 		$start = ($page-1) * $perPage;
-		$items = R::find('ecatalog', 'LIMIT ?,?', [$start, $perPage]);
+		$items = R::find('ecatalog', 'ORDER BY sort_order LIMIT ?,?', [$start, $perPage]);
+		$itemsAll = R::find('ecatalog', 'ORDER BY sort_order');
 		$count = R::count('ecatalog');
 		$maxPage = floor($count/$perPage) + ($count%$perPage == 0 ? 0: 1);
 
 		$itemsExport = R::exportAll($items);
 		$this->builds($itemsExport);
+		$itemsAll = R::exportAll($items);
+		$this->builds($itemsAll);
 
-		$this->slim->render("ecatalog/list.php", ['items'=> $itemsExport, 'page'=> $page, 'maxPage'=> $maxPage]);
+		$this->slim->render("ecatalog/list.php", [
+			'items'=> $itemsExport,
+			'itemsAll'=> $itemsAll,
+			'page'=> $page,
+			'maxPage'=> $maxPage
+		]);
 	}
 
 	public function add()
@@ -76,6 +85,15 @@ class ECatalogController extends BaseController
 		@unlink('upload/'.$item['pdf_path']);
 		@unlink('upload/'.$item['cover_path']);
 		$this->slim->redirect($this->slim->request()->getRootUri().'/ecatalog');
+	}
+
+	public function sort_move($id)
+	{
+		$attr = $this->slim->request->get();
+		$moveSort = new ECatalogMoveForm($id);
+		$moveSort->moveTo($attr["id"], $attr["position"]);
+
+		$this->slim->redirect($this->slim->request()->getReferrer());
 	}
 
 	public function build(&$item)
