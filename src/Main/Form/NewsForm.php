@@ -41,12 +41,12 @@ class NewsForm extends Form
 		if(!$this->emptyAttr('id')) {
 			$news = R::findOne('news', 'id=?', [$this->getAttr('id')]);
 			$news->updated_at = date('Y-m-d H:i:s');
-			$news->sort_order = (int)R::getCell("SELECT MAX(sort_order) FROM news") + 1;
 		}
 		else {
 			$news = R::dispense('news');
 			$news->created_at = date('Y-m-d H:i:s');
 			$news->updated_at = date('Y-m-d H:i:s');
+			$news->sort_order = (int)R::getCell("SELECT MAX(sort_order) FROM news") + 1;
 		}
 		$news->name = $this->getAttr('name');
 

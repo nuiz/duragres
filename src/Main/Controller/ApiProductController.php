@@ -72,6 +72,25 @@ class ApiProductController extends BaseController {
 		exit();
 	}
 
+	public function indexpost()
+	{
+		$queryParam = [];
+
+    $queryParam[]= $this->slim->request->post()['type'];
+	  $queryParam[]= $this->slim->request->post()['size'];
+	  $queryParam[]= $this->slim->request->post()['style'];
+	  $queryParam[]= $this->slim->request->post()['company'];
+		$where = "type = ? AND size = ? AND style = ? AND company = ?";
+
+		$items = R::getAll('SELECT product.* FROM product WHERE '.$where.' ORDER BY is_hot DESC, is_new DESC, created_at DESC', $queryParam);
+		$this->builds($items);
+
+		header('Content-Type: application/json');
+		echo json_encode(['items'=> $items], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+		exit();
+	}
+
 	public function get($id)
 	{
 		$item = R::findOne('product', 'id=?', [$id]);

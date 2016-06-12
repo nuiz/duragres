@@ -84,6 +84,7 @@ class Route {
 		$this->slim->get('/api/news/:id', 'Main\Controller\ApiNewsController:get');
 
 		$this->slim->get('/api/product', 'Main\Controller\ApiProductController:index');
+		$this->slim->post('/api/product2', 'Main\Controller\ApiProductController:indexpost');
 		$this->slim->get('/api/product/:id', 'Main\Controller\ApiProductController:get');
 		$this->slim->get('/api/product/addview/:id', 'Main\Controller\ApiProductController:addView');
 		$this->slim->post('/api/product/addroom_use', 'Main\Controller\ApiProductController:addRoomUse');
